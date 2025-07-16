@@ -1,6 +1,5 @@
 
-
-let countdownDate = new Date('18 july, 2025 18:00:00').getTime()
+let startDate = '18 july, 2025 18:00:00'
 
 function prulalaze(value, singular, prulal) {
     return value === 1 ? singular: prulal;
@@ -12,6 +11,10 @@ function format(value) {
 
 let interval = setInterval(()=> {
 
+
+
+let countdownDate = new Date(startDate).getTime()
+
 let now = new Date().getTime()
 let remainigTime = countdownDate - now;
 
@@ -20,6 +23,10 @@ if (remainigTime <= 0) {
     document.querySelector('.hours').textContent = '00';
     document.querySelector('.minutes').textContent = '00';
     document.querySelector('.seconds').textContent= '00';
+
+    let nextStartDate = new Date(startDate)
+    nextStartDate.setDate(nextStartDate.getDate() + 7)
+    startDate = nextStartDate
 
 }
 
@@ -31,7 +38,7 @@ let seconds = Math.floor(remainigTime % (1000 * 60) / 1000);
 document.querySelector('.days').textContent = format(days);
 document.querySelector('.hours').textContent = format(hours);
 document.querySelector('.minutes').textContent = format(minutes);
-document.querySelector('.seconds').textContent= format(seconds);
+document.querySelector('.seconds').textContent = format(seconds);
 
 document.querySelector('.days-text').textContent = prulalaze(days, 'day', 'days');
 document.querySelector('.hours-text').textContent = prulalaze(hours, 'hour', 'hours');
